@@ -39,7 +39,7 @@ const Login = () => {
       <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
       {/* Login card */}
-      <div className="lg:absolute h-screen inset-0 flex items-center justify-center">
+      <div className="lg:absolute h-full lg:h-screen inset-0 flex items-center justify-center">
         <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
           {/* Login Title */}
           <h1 className="text-3xl font-semibold text-white mb-8">Login</h1>
@@ -107,8 +107,9 @@ const Login = () => {
           {/* Submit button */}
           <LoginButton />
 
+          {/* Login with text */}
           <div className="flex items-center pt-4 space-x-2">
-            <div className="flex-1 h-px w-32 bg-white"></div>
+            <div className="flex-1 h-px w-14 lg:w-32 bg-white"></div>
             <p className="text-sm ">Login with social accounts</p>
             <div className="flex-1 h-px bg-white"></div>
           </div>
@@ -116,12 +117,14 @@ const Login = () => {
           {/* Social icons */}
           <SocialLogin />
 
-          {/* Sign up  message*/}
+          {/* Sign up text */}
           <p className="text-sm text-center pt-6 gap-2 flex justify-center sm:px-6 ">
             Don&apos;t have an account?
-            <a href="#" className="underline hover:text-red-600 font-bold">
+            <Link
+              to="/register"
+              className="underline hover:text-red-600 font-bold">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>
