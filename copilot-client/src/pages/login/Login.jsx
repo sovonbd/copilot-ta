@@ -1,13 +1,24 @@
+// Import necessary dependencies
 import videoSource from "../../assets/video.mp4";
 import Logo from "../../assets/CoPilotXR_02.png";
 import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import LoginButton from "./LoginButton";
+import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
+import SocialLogin from "./SocialLogin";
 
+// Define the Login component
 const Login = () => {
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe);
+  };
   return (
     <div className="relative">
+      {/* Logo */}
       <Link to="/">
         <img
           src={Logo}
@@ -15,6 +26,7 @@ const Login = () => {
           alt=""
         />
       </Link>
+      {/* Video background */}
       <video
         autoPlay
         muted
@@ -23,11 +35,13 @@ const Login = () => {
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
       {/* Login card */}
       <div className="lg:absolute h-screen inset-0 flex items-center justify-center">
         <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
+          {/* Login Title */}
           <h1 className="text-3xl font-semibold text-white mb-8">Login</h1>
 
           {/* Email input */}
@@ -37,7 +51,7 @@ const Login = () => {
             </span>
             <input
               id="emailInput"
-              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 focus:outline-none bg-transparent"
+              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 w-[248px] focus:outline-none bg-transparent"
               placeholder=""
               type="text"
             />
@@ -55,7 +69,7 @@ const Login = () => {
             </span>
             <input
               id="passwordInput"
-              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 focus:outline-none bg-transparent "
+              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 w-[248px] px-6 focus:outline-none bg-transparent "
               placeholder=""
               type="password"
             />
@@ -67,16 +81,53 @@ const Login = () => {
           </div>
 
           {/* Remember & Forgot Password option */}
+          <div className="flex justify-center lg:justify-between gap-4 w-full mx-3 lg:w-80">
+            <label className="flex items-center cursor-pointer">
+              <span className="relative">
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={rememberMe}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="block bg-white border-2  w-4 h-4 rounded-sm focus:ring-2 focus:ring-red-600 ring-offset-0"></span>
+                {rememberMe && (
+                  <FaCheck className="absolute left-0 top-0 ml-0.5 mt-0.5 w-3 h-3 fill-current text-red-600 pointer-events-none font-bold" />
+                )}
+              </span>
+              <span className="ml-2 text-sm text-white">Remember me</span>
+            </label>
+            <Link
+              to="/forgot-password"
+              className="text-white text-sm hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
 
           {/* Submit button */}
           <LoginButton />
+
+          <div className="flex items-center pt-4 space-x-2">
+            <div className="flex-1 h-px w-32 bg-white"></div>
+            <p className="text-sm ">Login with social accounts</p>
+            <div className="flex-1 h-px bg-white"></div>
+          </div>
+
+          {/* Social icons */}
+          <SocialLogin />
+
+          {/* Sign up  message*/}
+          <p className="text-sm text-center pt-6 gap-2 flex justify-center sm:px-6 ">
+            Don&apos;t have an account?
+            <a href="#" className="underline hover:text-red-600 font-bold">
+              Sign up
+            </a>
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
+// Export the Login component
 export default Login;
-
-// onClick={handleClick}
-// whileTap={{ scale: 0.95 }} // Add scale effect while tapping
