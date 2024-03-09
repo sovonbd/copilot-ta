@@ -19,11 +19,11 @@ const Login = () => {
         autoPlay
         muted
         loop
-        className="absolute inset-0 w-full object-cover h-screen">
+        className="absolute inset-0 w-full object-cover h-full lg:h-screen">
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 bg-black opacity-60 h-screen"></div>
+      <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
       {/* Login card */}
       <div className="lg:absolute h-screen inset-0 flex items-center justify-center">
