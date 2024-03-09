@@ -27,7 +27,7 @@ const Login = () => {
 
       {/* Login card */}
       <div className="lg:absolute h-screen inset-0 flex items-center justify-center">
-        <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-2 backdrop-blur-md backdrop-saturate-200 rounded-3xl">
+        <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
           <h1 className="text-3xl font-semibold text-white mb-8">Login</h1>
 
           {/* Email input */}
@@ -36,13 +36,14 @@ const Login = () => {
               <TbUser />
             </span>
             <input
-              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 focus:outline-none bg-transparent "
+              id="emailInput"
+              className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 focus:outline-none bg-transparent"
               placeholder=""
               type="text"
             />
             <label
-              className="absolute -top-4 pl-6 pb-2 left-0 bg-transparent text-xs duration-300 peer-placeholder-shown:left-0 peer-focus:pl-6 peer-placeholder-shown:top-[60%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-xs  peer-focus:-top-4 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-white"
-              htmlFor="">
+              htmlFor="emailInput"
+              className="absolute -top-4 pl-6 pb-2 left-0 bg-transparent text-xs duration-300 peer-placeholder-shown:left-0 peer-focus:pl-6 peer-placeholder-shown:top-[60%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-xs  peer-focus:-top-4 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-white cursor-text">
               Email
             </label>
           </div>
@@ -53,19 +54,19 @@ const Login = () => {
               <MdLockOutline />
             </span>
             <input
+              id="passwordInput"
               className="peer border-b-2 lg:w-80 text-sm border-white focus:border-red-600 focus:transition focus:duration-500 py-2 px-6 focus:outline-none bg-transparent "
               placeholder=""
               type="password"
             />
             <label
-              className="absolute -top-4 pl-6 pb-2 left-0 bg-transparent text-xs duration-300 peer-placeholder-shown:left-0 peer-focus:pl-6 peer-placeholder-shown:top-[60%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-xs  peer-focus:-top-4 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-white"
-              htmlFor="">
+              htmlFor="passwordInput"
+              className="absolute -top-4 pl-6 pb-2 left-0 bg-transparent text-xs duration-300 peer-placeholder-shown:left-0 peer-focus:pl-6 peer-placeholder-shown:top-[60%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-xs  peer-focus:-top-4 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-white cursor-text">
               Password
             </label>
           </div>
 
           {/* Remember & Forgot Password option */}
-          
 
           {/* Submit button */}
           <button
