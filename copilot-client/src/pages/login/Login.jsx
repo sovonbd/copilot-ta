@@ -1,9 +1,9 @@
-import React from "react";
 import videoSource from "../../assets/video.mp4";
 import Logo from "../../assets/CoPilotXR_02.png";
 import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
+import LoginButton from "./LoginButton";
 
 const Login = () => {
   return (
@@ -69,11 +69,7 @@ const Login = () => {
           {/* Remember & Forgot Password option */}
 
           {/* Submit button */}
-          <button
-            type="button"
-            className="py-2 px-5 mb-4 mt-6 shadow-lg before:block before:-left-1 before:-top-1 before:bg-white before:absolute before:h-0 before:w-0 before:hover:w-[100%] before:hover:h-[100%]  before:duration-500 before:-z-40 after:block after:-right-1 after:-bottom-1 after:bg-white after:absolute after:h-0 after:w-0 after:hover:w-[100%] after:hover:h-[100%] after:duration-500 after:-z-40 bg-white relative inline-block text-black hover:text-white hover:bg-red-700 lg:w-[320px]">
-            Login
-          </button>
+          <LoginButton />
         </div>
       </div>
     </div>
@@ -81,3 +77,6 @@ const Login = () => {
 };
 
 export default Login;
+
+// onClick={handleClick}
+// whileTap={{ scale: 0.95 }} // Add scale effect while tapping
