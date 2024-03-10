@@ -18,14 +18,6 @@ const Login = () => {
   };
   return (
     <div className="relative">
-      {/* Logo */}
-      <Link to="/">
-        <img
-          src={Logo}
-          className="relative z-10 w-40 lg:w-60 py-10 mx-auto"
-          alt=""
-        />
-      </Link>
       {/* Video background */}
       <video
         autoPlay
@@ -39,10 +31,21 @@ const Login = () => {
       <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
       {/* Login card */}
-      <div className="lg:absolute h-full lg:h-screen inset-0 flex items-center justify-center">
+      <div className="lg:absolute h-full lg:h-screen inset-0 flex items-center justify-center p-6">
         <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
+          {/* Logo */}
+          <Link to="/">
+            <img
+              src={Logo}
+              className="relative z-10 w-24 pb-4 mx-auto"
+              alt=""
+            />
+          </Link>
           {/* Login Title */}
-          <h1 className="text-3xl font-semibold text-white mb-8">Login</h1>
+          <h1 className="text-2xl lg:text-3xl pt-8 pb-2">Welcome Back!</h1>
+          <p className="text-sm font-extralight text-gray-300 pb-6 w-4/5 lg:w-3/5 text-center">
+            To keep connected with us please log in to your account
+          </p>
 
           {/* Email input */}
           <div className="relative mx-4">
@@ -63,7 +66,7 @@ const Login = () => {
           </div>
 
           {/* Password input */}
-          <div className="relative my-8 ">
+          <div className="relative my-6 ">
             <span className="absolute top-2 text-xl left-0 pr-4">
               <MdLockOutline />
             </span>
