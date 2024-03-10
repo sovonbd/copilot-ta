@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import { useState } from "react";
-import { FaCheck } from "react-icons/fa";
 import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
