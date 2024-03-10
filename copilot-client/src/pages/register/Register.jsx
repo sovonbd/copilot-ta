@@ -4,7 +4,7 @@ import Logo from "../../assets/CoPilotXR_02.png";
 import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
-import { useState } from "react";
+// import { useState } from "react";
 import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
