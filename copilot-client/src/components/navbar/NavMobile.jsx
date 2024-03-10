@@ -15,7 +15,6 @@ const NavMobile = () => {
         size={20}
         toggle={setIsOpen}
         direction="right"
-        
       />
       <AnimatePresence>
         {isOpen && (
