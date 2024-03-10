@@ -5,17 +5,12 @@ import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import { useState } from "react";
-import { FaCheck } from "react-icons/fa";
 import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
 
 const Register = () => {
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setRememberMe(!rememberMe);
-  };
+  
   return (
     <div className="relative">
       {/* Video background */}
@@ -83,7 +78,7 @@ const Register = () => {
           </div>
 
           {/* Password input */}
-          <div className="relative mt-6 mb-2 ">
+          <div className="relative my-6 ">
             <span className="absolute top-2 text-xl left-0 pr-4">
               <MdLockOutline />
             </span>
@@ -100,8 +95,13 @@ const Register = () => {
             </label>
           </div>
 
+          {/* Image input */}
+          <div className="relative w-[252px] lg:w-[320px]">
+            <input type="file" className="text-sm" />
+          </div>
+
           {/* Submit button */}
-          <LoginButton />
+          <LoginButton buttonText="Register" />
 
           {/* Login with text */}
           <div className="flex items-center pt-4 space-x-2">
@@ -115,11 +115,11 @@ const Register = () => {
 
           {/* Sign up text */}
           <p className="text-sm text-center pt-6 gap-2 flex justify-center sm:px-6 ">
-            Don&apos;t have an account?
+            Already has an account?
             <Link
-              to="/register"
+              to="/login"
               className="underline hover:text-red-600 font-bold">
-              Sign up
+              Sign In
             </Link>
           </p>
         </div>

@@ -108,7 +108,7 @@ const Login = () => {
           </div>
 
           {/* Submit button */}
-          <LoginButton />
+          <LoginButton buttonText="Login" />
 
           {/* Login with text */}
           <div className="flex items-center pt-4 space-x-2">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./LoginButton.css"; // Import your CSS file
 
-const LoginButton = () => {
+const LoginButton = ({ buttonText }) => {
   const [isBouncing, setIsBouncing] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const isHovered = false;
@@ -40,7 +40,7 @@ const LoginButton = () => {
           className={`${isHovered ? "text-white" : ""} ${
             isClicked ? "text-red-600" : ""
           }`}>
-          Login
+          {buttonText}
         </span>
       </button>
     </div>
