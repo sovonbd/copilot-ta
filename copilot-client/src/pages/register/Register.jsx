@@ -9,8 +9,11 @@ import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import UploadButton from "./UploadButton";
 
 const Register = () => {
+  const [imageInfo, setImageInfo] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -19,7 +22,15 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    if (imageInfo) {
+      const newData = {
+        ...data,
+        image: imageInfo,
+      };
+      console.log(newData);
+      // console.log("Image Info: ", imageInfo);
+      reset();
+    }
   };
 
   return (
@@ -33,6 +44,7 @@ const Register = () => {
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
@@ -47,12 +59,14 @@ const Register = () => {
               alt=""
             />
           </Link>
+
           {/* Login Title */}
           <h1 className="text-2xl lg:text-3xl pt-8 pb-2">Create new account</h1>
           <p className="text-sm font-extralight text-gray-300 pb-6 w-4/5 lg:w-3/5 text-center">
             Enhance your experience in world of virtual reality
           </p>
 
+          {/* Form element */}
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* User name */}
             <div className="relative">
@@ -74,6 +88,7 @@ const Register = () => {
             {errors.name && (
               <span className="text-red-500 text-sm">Name is required</span>
             )}
+
             {/* Email input */}
             <div className="relative mt-4">
               <span className="absolute top-3 text-xl left-0">
@@ -116,10 +131,9 @@ const Register = () => {
 
             {/* Image input */}
             <div className="relative w-[252px] lg:w-[320px] mt-6">
-              <input
-                type="file"
-                className="text-sm"
-                {...register("image", { required: true })}
+              <UploadButton
+                {...register("image", { required: false })}
+                handleImageInfo={setImageInfo}
               />
             </div>
             {errors.image && (

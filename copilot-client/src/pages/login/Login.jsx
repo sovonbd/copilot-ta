@@ -38,6 +38,7 @@ const Login = () => {
         <source src={videoSource} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-60 h-full lg:h-screen"></div>
 
@@ -52,15 +53,16 @@ const Login = () => {
               alt=""
             />
           </Link>
+
           {/* Login Title */}
           <h1 className="text-2xl lg:text-3xl pt-8 pb-2">Welcome Back!</h1>
           <p className="text-sm font-extralight text-gray-300 pb-6 w-4/5 lg:w-3/5 text-center">
             To keep connected with us please log in to your account
           </p>
 
+          {/* Form element */}
           <form onSubmit={handleSubmit(onSubmit)} className="px-5 lg:p-0">
             {/* Email input */}
-
             <div className="relative mt-4">
               <span className="absolute top-3 text-xl left-0">
                 <TbUser />
