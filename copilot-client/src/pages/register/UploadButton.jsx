@@ -33,7 +33,7 @@ const UploadButton = ({ handleImageInfo }) => {
   //   },
   // });
 
-  // const myImage = cld.image(publicId);
+  const myImage = cld.image(publicId);
 
   return (
     <div>
