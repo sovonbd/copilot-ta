@@ -17,7 +17,7 @@ const UploadButton = ({ handleImageInfo }) => {
     // showAdvancedOptions: true,  //add advanced options (public_id and tag)
     sources: ["local", "url", "google_drive"], // restrict the upload sources to URL and local files
     multiple: true, //restrict upload to a single file
-    // folder: "user_images", //upload files to the specified folder
+    folder: "nextapp", //upload files to the specified folder
     // tags: ["users", "profile"], //add the given tags to the uploaded files
     // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
     // clientAllowedFormats: ["images"], //restrict uploading to image files only
@@ -33,7 +33,8 @@ const UploadButton = ({ handleImageInfo }) => {
   //   },
   // });
 
-  const myImage = cld.image(publicId);
+  // const myImage = cld.image(publicId);
+  
 
   return (
     <div>

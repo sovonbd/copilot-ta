@@ -57,7 +57,7 @@ const CloudinaryUploadWidget = ({
   };
 
   const handleUploadSuccess = (info) => {
-    setFileName(info.original_filename || "File name not found");
+    setFileName(info.original_filename + " ..." || "File name not found");
   };
 
   return (
