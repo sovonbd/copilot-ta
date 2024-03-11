@@ -1,15 +1,15 @@
 // Import necessary dependencies
 import videoSource from "../../assets/video.mp4";
 import Logo from "../../assets/CoPilotXR_02.png";
-import { Link } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import { useState } from "react";
 import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
-import { useForm } from "react-hook-form";
 import UploadButton from "./UploadButton";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
   const [imageInfo, setImageInfo] = useState(null);
