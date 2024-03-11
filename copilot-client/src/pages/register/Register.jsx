@@ -8,11 +8,17 @@ import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
 import UploadButton from "./UploadButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [imageInfo, setImageInfo] = useState(null);
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+  const { createUser, updateUserProfile } = useAuth();
 
   const {
     register,
@@ -27,8 +33,42 @@ const Register = () => {
         ...data,
         image: imageInfo,
       };
-      console.log(newData);
+      // console.log(newData);
       // console.log("Image Info: ", imageInfo);
+
+      const name = newData.name;
+      const email = newData.email;
+      const password = newData.password;
+      const imageUrl = newData?.image?.map((item) => item.url)[0];
+      console.log(name, email, password, imageUrl);
+
+      createUser(email, password).then((res) => {
+        console.log(res.user);
+        updateUserProfile(name, imageUrl)
+          .then(() => {
+            const userInfo = {
+              name: name,
+              email: email,
+              image: imageUrl,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                toast.success("Account created successfully!", {
+                  position: "top-center",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+                navigate("/");
+              }
+            });
+          })
+          .catch((err) => console.log(err));
+      });
       reset();
     }
   };
@@ -55,7 +95,7 @@ const Register = () => {
           <Link to="/">
             <img
               src={Logo}
-              className="relative z-10 w-24 pb-4 mx-auto"
+              className="relative hover:scale-110 transition duration-300 z-10 w-24 pb-4 mx-auto"
               alt=""
             />
           </Link>

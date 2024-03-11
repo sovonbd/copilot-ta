@@ -49,7 +49,7 @@ const Login = () => {
           <Link to="/">
             <img
               src={Logo}
-              className="relative z-10 w-24 pb-4 mx-auto"
+              className="relative z-10 w-24 pb-4 mx-auto hover:scale-110 transition duration-300"
               alt=""
             />
           </Link>
