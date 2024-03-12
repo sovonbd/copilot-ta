@@ -29,6 +29,7 @@ const MainLayout = () => {
         draggable
         pauseOnHover
         theme="light"
+        style={{ width: "auto" }}
       />
     </div>
   );

@@ -36,7 +36,7 @@ const Login = () => {
         navigate("/");
         reset();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(err.message));
   };
 
   const handleCheckboxChange = () => {
