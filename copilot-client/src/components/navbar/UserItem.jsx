@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -22,6 +22,19 @@ const UserItem = () => {
   const ref = useRef(null);
   const { user, logOut } = useAuth();
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   const handleLogout = () => {
     logOut()
       .then(() => {
@@ -31,7 +44,7 @@ const UserItem = () => {
   };
 
   return user ? (
-    <div>
+    <div ref={ref} className="relative">
       <img
         src={user?.photoURL}
         className="w-10 border-2 p-1 rounded-full border-gray-200 hover:scale-110 duration-300 cursor-pointer"
@@ -45,7 +58,7 @@ const UserItem = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute rounded-md shadow-4xl right-36 top-20 p-3 pt-0 bg-neutral-950 border-b border-b-white/20">
+            className="absolute rounded-md shadow-4xl right-0 top-full mt-2 p-3 bg-neutral-950 border-b border-b-white/60 z-10">
             <ul className="grid gap-2">
               {UserNav.map((route, idx) => {
                 const { Icon } = route;

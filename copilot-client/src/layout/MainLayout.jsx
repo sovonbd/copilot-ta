@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MainLayout = () => {
   const location = useLocation();
   return (
-    <div className="bg-neutral-950 text-white">
+    <div className="bg-neutral-950 text-white overflow-auto lg:overflow-visible">
       {/* <Navbar /> */}
       {location.pathname === "/" ? (
         <div className="lg:w-4/5 mx-auto lg:py-6">

@@ -34,7 +34,7 @@ const NavMobile = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-0 shadow-4xl right-0 p-3 pt-0 bg-neutral-950 rounded-md border-b border-b-white/20">
+            className="absolute left-0 shadow-4xl right-0 p-3 pt-0 bg-neutral-950 rounded-md border-b border-b-white/20 z-10">
             <ul className="grid gap-2">
               {NavItems.filter((item) => item.title !== "Home").map(
                 (route, idx) => {

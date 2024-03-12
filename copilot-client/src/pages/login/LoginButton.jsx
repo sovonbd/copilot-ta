@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./LoginButton.css"; // Import your CSS file
+import PropTypes from "prop-types";
 
 const LoginButton = ({ buttonText }) => {
   const [isBouncing, setIsBouncing] = useState(false);
@@ -45,6 +46,10 @@ const LoginButton = ({ buttonText }) => {
       </button>
     </div>
   );
+};
+
+LoginButton.propTypes = {
+  buttonText: PropTypes.string,
 };
 
 export default LoginButton;

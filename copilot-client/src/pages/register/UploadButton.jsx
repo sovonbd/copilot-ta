@@ -3,12 +3,14 @@ import { useState } from "react";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
+import { useLocation } from "react-router-dom";
 
 const UploadButton = ({ handleImageInfo }) => {
   const [publicId, setPublicId] = useState("");
   const [cloudName] = useState("dwdxdtvez");
   const [uploadPreset] = useState("pc1pj4gw");
   const [fileName, setFileName] = useState("");
+  const location = useLocation();
 
   const [uwConfig] = useState({
     cloudName,
@@ -17,7 +19,7 @@ const UploadButton = ({ handleImageInfo }) => {
     // showAdvancedOptions: true,  //add advanced options (public_id and tag)
     sources: ["local", "url", "google_drive"], // restrict the upload sources to URL and local files
     multiple: true, //restrict upload to a single file
-    folder: "nextapp", //upload files to the specified folder
+    folder: location.pathname === "/register" ? "users" : "public", //upload files to the specified folder
     // tags: ["users", "profile"], //add the given tags to the uploaded files
     // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
     // clientAllowedFormats: ["images"], //restrict uploading to image files only
@@ -34,7 +36,6 @@ const UploadButton = ({ handleImageInfo }) => {
   // });
 
   // const myImage = cld.image(publicId);
-  
 
   return (
     <div>
@@ -47,13 +48,6 @@ const UploadButton = ({ handleImageInfo }) => {
       {fileName && (
         <span className="pl-1 text-sm relative -top-1">{fileName}</span>
       )}
-      {/* <div style={{ width: "800px" }}>
-        <AdvancedImage
-          style={{ maxWidth: "100%" }}
-          cldImg={myImage}
-          plugins={[responsive(), placeholder()]}
-        />
-      </div> */}
     </div>
   );
 };
