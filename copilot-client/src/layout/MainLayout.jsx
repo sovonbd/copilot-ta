@@ -15,7 +15,7 @@ const MainLayout = () => {
         </div>
       ) : (
         <div>
-          <Outlet />
+          {/* <Outlet /> */}
         </div>
       )}
       <ToastContainer
