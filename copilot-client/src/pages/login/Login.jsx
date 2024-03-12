@@ -1,7 +1,7 @@
 // Import necessary dependencies
 import videoSource from "../../assets/video.mp4";
 import Logo from "../../assets/CoPilotXR_02.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import LoginButton from "./LoginButton";
@@ -9,10 +9,15 @@ import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 // Define the Login component
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -21,7 +26,17 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    signIn(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success(`Welcome back ${res.user.displayName}!`);
+        navigate("/");
+        reset();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleCheckboxChange = () => {

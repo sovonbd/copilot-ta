@@ -42,10 +42,10 @@ const Register = () => {
       const imageUrl = newData?.image?.map((item) => item.url)[0];
       console.log(name, email, password, imageUrl);
 
-      createUser(email, password).then((res) => {
-        console.log(res.user);
-        updateUserProfile(name, imageUrl)
-          .then(() => {
+      createUser(email, password)
+        .then((res) => {
+          console.log(res.user);
+          updateUserProfile(name, imageUrl).then(() => {
             const userInfo = {
               name: name,
               email: email,
@@ -53,22 +53,14 @@ const Register = () => {
             };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
-                toast.success("Account created successfully!", {
-                  position: "top-center",
-                  autoClose: 3000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                });
+                toast.success("Account created successfully!");
                 navigate("/");
               }
             });
-          })
-          .catch((err) => console.log(err));
-      });
+          });
+        })
+        .catch((err) => toast.error(err.message));
+
       reset();
     }
   };
