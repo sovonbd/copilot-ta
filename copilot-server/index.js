@@ -28,6 +28,7 @@ async function run() {
     // await client.connect();
 
     const userCollection = client.db("copilotta").collection("users");
+    const imageCollection = client.db("copilotta").collection("images");
 
     // user related api
     app.post("/users", async (req, res) => {
@@ -41,6 +42,13 @@ async function run() {
       res.send(result);
     });
 
+    // images related api
+    app.post("/images", async (req, res) => {
+      const images = req.body;
+      console.log(images);
+      const result = await imageCollection.insertMany(images);
+      res.send(result);
+    });
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log(

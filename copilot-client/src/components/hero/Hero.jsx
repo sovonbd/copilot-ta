@@ -2,11 +2,37 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import UploadButton from "../../pages/register/UploadButton";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Hero = () => {
   const [imageInfo, setImageInfo] = useState(null);
-  const { loading } = useAuth();
-  console.log(imageInfo);
+  const { user, loading } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  // console.log(imageInfo);
+
+  const imageFiles = imageInfo?.map((image) => ({
+    original_filename: image.original_filename,
+    bytes: image.bytes,
+    created_at: image.created_at,
+    url: image.url,
+    user: user.displayName,
+    email: user.email,
+  }));
+
+  useEffect(() => {
+    // Check if all objects are loaded before logging
+    if (imageFiles && imageFiles.length === imageInfo.length) {
+      console.log(imageFiles);
+
+      // Now that all objects are loaded, you can make the API call
+      // axiosPublic
+      //   .post("/images", imageFiles)
+      //   .then((res) => {
+      //     console.log(res.result);
+      //   })
+      //   .catch((err) => console.log(err.error));
+    }
+  }, [imageFiles, imageInfo, axiosPublic]);
 
   return (
     <section className="w-full px-4 lg:px-0 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 mx-auto">
