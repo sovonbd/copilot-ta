@@ -46,7 +46,7 @@ async function run() {
     app.post("/images", async (req, res) => {
       const images = req.body;
       console.log(images);
-      const result = await imageCollection.insertMany(images);
+      const result = await imageCollection.insertOne(images);
       res.send(result);
     });
     // Send a ping to confirm a successful connection

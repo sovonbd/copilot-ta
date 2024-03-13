@@ -7,12 +7,12 @@ import { useState } from "react";
 import SocialLogin from "../login/SocialLogin";
 import LoginButton from "../login/LoginButton";
 import { MdOutlineEmail } from "react-icons/md";
-import UploadButton from "./UploadButton";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 
 const Register = () => {
   const [imageInfo, setImageInfo] = useState(null);
@@ -27,19 +27,14 @@ const Register = () => {
     reset,
   } = useForm();
 
+  // console.log(imageInfo);
+
   const onSubmit = async (data) => {
     if (imageInfo) {
-      const newData = {
-        ...data,
-        image: imageInfo,
-      };
-      // console.log(newData);
-      // console.log("Image Info: ", imageInfo);
-
-      const name = newData.name;
-      const email = newData.email;
-      const password = newData.password;
-      const imageUrl = newData?.image?.map((item) => item.url)[0];
+      const name = data?.name;
+      const email = data?.email;
+      const password = data?.password;
+      const imageUrl = imageInfo?.url;
       console.log(name, email, password, imageUrl);
 
       createUser(email, password)
@@ -162,17 +157,14 @@ const Register = () => {
             )}
 
             {/* Image input */}
-            <div className="relative w-[252px] lg:w-[320px] mt-6">
-              <UploadButton
-                {...register("image", { required: false })}
-                handleImageInfo={setImageInfo}
-              />
+            <div className="relative w-[252px] lg:w-[320px] mt-6 flex gap-2">
+              <CloudinaryUploadWidget handleImageInfo={setImageInfo} />
+              {imageInfo && (
+                <p className="text-white text-sm font-light">
+                  {imageInfo.original_filename}
+                </p>
+              )}
             </div>
-            {errors.image && (
-              <span className="text-red-500 text-sm">
-                User image is required <br />
-              </span>
-            )}
 
             {/* Submit button */}
             <LoginButton buttonText="Register" />

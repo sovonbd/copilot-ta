@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import UploadButton from "../../pages/register/UploadButton";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import CloudinaryUploadWidget from "../../pages/register/CloudinaryUploadWidget";
 
 const Hero = () => {
   const [imageInfo, setImageInfo] = useState(null);
@@ -10,29 +10,33 @@ const Hero = () => {
   const axiosPublic = useAxiosPublic();
   // console.log(imageInfo);
 
-  const imageFiles = imageInfo?.map((image) => ({
-    original_filename: image.original_filename,
-    bytes: image.bytes,
-    created_at: image.created_at,
-    url: image.url,
-    user: user.displayName,
-    email: user.email,
-  }));
-
   useEffect(() => {
     // Check if all objects are loaded before logging
-    if (imageFiles && imageFiles.length === imageInfo.length) {
-      console.log(imageFiles);
+    if (imageInfo) {
+      const imageFiles = {
+        original_filename: imageInfo?.original_filename,
+        bytes: imageInfo?.bytes,
+        created_at: new Intl.DateTimeFormat("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }).format(Date.parse(imageInfo?.created_at)),
+        url: imageInfo?.url,
+        user: user?.displayName,
+        email: user?.email,
+        userImage: user?.photoURL,
+      };
+      // console.log(imageFiles);
 
       // Now that all objects are loaded, you can make the API call
-      // axiosPublic
-      //   .post("/images", imageFiles)
-      //   .then((res) => {
-      //     console.log(res.result);
-      //   })
-      //   .catch((err) => console.log(err.error));
+      axiosPublic
+        .post("/images", imageFiles)
+        .then((res) => {
+          console.log(res.result);
+        })
+        .catch((err) => console.log(err.error));
     }
-  }, [imageFiles, imageInfo, axiosPublic]);
+  }, [axiosPublic, imageInfo, user?.displayName, user?.email, user?.photoURL]);
 
   return (
     <section className="w-full px-4 lg:px-0 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 mx-auto">
@@ -47,7 +51,7 @@ const Hero = () => {
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
           error repellat voluptatibus ad.
         </p>
-        <UploadButton handleImageInfo={setImageInfo} />
+        <CloudinaryUploadWidget handleImageInfo={setImageInfo} />
       </div>
 
       <ShuffleGrid />
