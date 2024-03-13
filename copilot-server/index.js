@@ -29,6 +29,9 @@ async function run() {
 
     const userCollection = client.db("copilotta").collection("users");
     const imageCollection = client.db("copilotta").collection("images");
+    const downloadCollection = client
+      .db("copilotta")
+      .collection("downloadedImages");
 
     // user related api
     app.post("/users", async (req, res) => {
@@ -43,12 +46,30 @@ async function run() {
     });
 
     // images related api
+    app.get("/images", async (req, res) => {
+      const result = await imageCollection.find().toArray();
+      res.send(result);
+    });
+
     app.post("/images", async (req, res) => {
       const images = req.body;
       console.log(images);
+      const query = { url: images.url };
+      const existingImage = await imageCollection.findOne(query);
+      if (existingImage) {
+        return res.send({ message: "Image already exists" });
+      }
       const result = await imageCollection.insertOne(images);
       res.send(result);
     });
+
+    app.post("/dowloadedImages", async (req, res) => {
+      const downloadInfo = req.body;
+      console.log(downloadInfo);
+      const result = await downloadCollection.insertOne(downloadInfo);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log(
