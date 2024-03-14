@@ -3,6 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 // const { startOfToday, endOfDay } = require("date-fns");
 
 const app = express();
@@ -12,6 +13,20 @@ app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2dhdxvg.mongodb.net/?retryWrites=true&w=majority`;
+
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../copilot-client/dist");
+app.use(express.static(buildPath));
+app.get("/", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../copilot-client/dist/index.html"),
+    (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
