@@ -2,5 +2,8 @@
   "dependencies": {
     "react-hook-form": "^7.51.0",
     "react-use": "^17.5.0"
+  },
+  "devDependencies": {
+    "daisyui": "^4.7.3"
   }
 }

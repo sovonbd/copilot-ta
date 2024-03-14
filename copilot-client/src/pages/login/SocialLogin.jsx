@@ -3,38 +3,36 @@ import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import facebookpng from "../../assets/facebook-96.png";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const SocialLogin = () => {
-  // const { googleSignIn } = useAuth();
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const axiosPublic = useAxiosPublic();
-  // const from = location.state?.from?.pathname || "/";
-  // const handleGoogleSignIn = () => {
-  //   googleSignIn()
-  //     .then((res) => {
-  //       // console.log(res.user);
-  //       const userInfo = {
-  //         email: res.user?.email,
-  //         name: res.user?.displayName,
-  //         image: res.user?.photoURL,
-  //         phoneNumber: res.user?.phoneNumber || "N/A",
-  //       };
-  //       // console.log(userInfo);
-  //       axiosPublic.post("/users", userInfo).then((res) => {
-  //         // console.log(res.data);
-  //       });
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "success",
-  //         title: "Welcome back to Edumart !!!",
-  //         showConfirmButton: false,
-  //         timer: 2000,
-  //       });
-  //       navigate(from, { replace: true });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const { googleSignIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+  const from = location.state?.from?.pathname || "/";
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((res) => {
+        // console.log(res.user);
+        const userInfo = {
+          email: res.user?.email,
+          name: res.user?.displayName,
+          image: res.user?.photoURL,
+          phoneNumber: res.user?.phoneNumber || "N/A",
+        };
+        // console.log(userInfo);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          // console.log(res.data);
+        });
+        toast.success("Successfully Logged in!");
+
+        navigate(from, { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const [googleHovered, setGoogleHovered] = useState(false);
   const [facebookHovered, setFacebookHovered] = useState(false);
@@ -58,7 +56,7 @@ const SocialLogin = () => {
   return (
     <div className="flex gap-8 justify-center pt-6 text-2xl text-white w-full">
       <button
-        // onClick={handleGoogleSignIn}
+        onClick={handleGoogleSignIn}
         className="icon-container"
         onMouseEnter={handleGoogleMouseEnter}
         onMouseLeave={handleGoogleMouseLeave}>
@@ -79,12 +77,9 @@ const SocialLogin = () => {
           <FaFacebook />
         )}
       </button>
-      {/* <FaFacebook
-        // onClick={handleGoogleSignIn}
-        className="hover:text-sky-500 cursor-pointer"
-      /> */}
+      
       <FaGithub
-        // onClick={handleGoogleSignIn}
+        onClick={handleGoogleSignIn}
         className=" hover:scale-150 text-center cursor-pointer transition duration-300"
       />
     </div>

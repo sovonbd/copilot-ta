@@ -6,6 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import { BsDownload } from "react-icons/bs";
 import useAuth from "../../hooks/useAuth";
 import { saveAs } from "file-saver";
+import Loading from "../loading/Loading";
 
 const ImageThumbnail = ({ refetchImages, fetchedImages }) => {
   const [open, setOpen] = useState(false);
@@ -38,7 +39,7 @@ const ImageThumbnail = ({ refetchImages, fetchedImages }) => {
   fetchedImages(images);
 
   if (isLoading) {
-    return <p className="text-red-500 text-5xl">Loading....</p>;
+    return <p>Loading...</p>;
   }
 
   const getImg = (imgSrc) => {

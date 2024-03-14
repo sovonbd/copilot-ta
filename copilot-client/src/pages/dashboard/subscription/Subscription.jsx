@@ -68,9 +68,7 @@ const Subscription = () => {
               </div>
 
               <div className="mt-[25px]">
-                <button
-                  id="upload_widget"
-                  className="relative inline-flex border-red-500 items-center justify-center p-4 px-16 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-[1px] rounded-md shadow-inner shadow-gray-300  group">
+                <button className="relative inline-flex border-red-500 items-center justify-center p-4 w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out border-[1px] rounded-md shadow-inner shadow-gray-300  group">
                   <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-gradient-to-tr from-red-900 via-red-800 to-red-500  group-hover:translate-x-0 ease">
                     <FaArrowRightLong className="text-2xl" />
                   </span>
@@ -134,7 +132,7 @@ const Subscription = () => {
               </div>
 
               <div className="mt-[25px]">
-                <button className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
+                <button className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold w-full">
                   Current Plan
                 </button>
               </div>
@@ -194,7 +192,7 @@ const Subscription = () => {
               <div className="mt-[25px]">
                 <button
                   id="upload_widget"
-                  className="relative inline-flex border-red-500 items-center justify-center p-4 px-16 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-[1px] rounded-md shadow-inner shadow-gray-300  group">
+                  className="relative inline-flex border-red-500 items-center justify-center p-4 w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out border-[1px] rounded-md shadow-inner shadow-gray-300  group">
                   <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-gradient-to-tr from-red-900 via-red-800 to-red-500  group-hover:translate-x-0 ease">
                     <FaArrowRightLong className="text-2xl" />
                   </span>

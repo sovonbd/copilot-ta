@@ -1,7 +1,7 @@
 // import { Axios } from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://copilot-server.vercel.app",
 });
 
 const useAxiosPublic = () => {

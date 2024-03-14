@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../pages/dashboard/dashboard/Sidebar";
+import ChatBubble from "../components/chatBubble/chatBubble";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -13,11 +14,14 @@ const DashboardLayout = () => {
       </div>
       <div
         className={`transition-all duration-500 ease-in-out  ${
-          sidebarOpen && location.pathname === "/dashboard/subscription"
+          sidebarOpen &&
+          (location.pathname === "/dashboard/subscription" ||
+            location.pathname === "/dashboard/downloads")
             ? "md:w-4/5 mx-auto relative left-[11%] transition-all duration-300 ease-in-out"
             : "left-0 md:relative"
         }`}>
         <Outlet />
+        <ChatBubble className="relative z-10" />
       </div>
     </div>
   );

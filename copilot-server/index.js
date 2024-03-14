@@ -34,12 +34,7 @@ async function run() {
       .collection("downloadedImages");
 
     // user related api
-    app.get("/users/:email", async (req, res) => {
-      const email = req.params.email;
-      const query = { email: email };
-      const result = await userCollection.findOne(query);
-      res.send(result);
-    });
+
     app.post("/users", async (req, res) => {
       const user = req.body;
       const query = { email: user.email };
@@ -54,6 +49,13 @@ async function run() {
     // images related api
     app.get("/images", async (req, res) => {
       const result = await imageCollection.find().toArray();
+      res.send(result);
+    });
+
+    app.get("/images/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { downloaderEmail: email };
+      const result = await downloadCollection.find(query).toArray();
       res.send(result);
     });
 

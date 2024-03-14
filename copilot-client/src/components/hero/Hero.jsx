@@ -65,8 +65,8 @@ const Hero = () => {
             Let&apos;s change it up a little more
           </h3>
           <p className="text-base text-white my-4 md:my-6 md:mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis
-            in error repellat voluptatibus ad.
+            Our responsibility to acknowledge that we are all treaty people, and
+            as such share the responsibility
           </p>
           <CloudinaryUploadWidget handleImageInfo={setImageInfo} />
         </div>

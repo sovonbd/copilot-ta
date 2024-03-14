@@ -1,6 +1,7 @@
-import useAuth from "../hooks/useAuth";
 import { useLocation, Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import Loading from "../components/loading/Loading";
+import useAuth from "../hooks/useAuth";
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
@@ -8,9 +9,9 @@ const PrivateRoutes = ({ children }) => {
 
   if (loading) {
     return (
-      <p className="flex justify-center items-center h-screen text-7xl text-red-500">
-        Loading....
-      </p>
+      <div>
+        <Loading />
+      </div>
     );
   }
 

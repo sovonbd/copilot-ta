@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div className="h-screen flex justify-center items-start">
-      <div className="w-96 mx-auto px-6 py-6  text-center bg-gray-800 rounded-lg lg:mt-0 xl:px-10">
+      <div className="w-96 mx-auto px-6 py-6  text-center bg-transparent rounded-lg shadow-inner shadow-white/70  lg:mt-0 xl:px-10">
         <div className="space-y-4 xl:space-y-6">
           <img
             className="mx-auto rounded-full h-36 w-36 border-2 p-2"

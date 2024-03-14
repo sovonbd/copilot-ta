@@ -9,6 +9,8 @@ import Profile from "../pages/dashboard/profile/Profile";
 import Subscription from "../pages/dashboard/subscription/Subscription";
 import Downloads from "../pages/dashboard/downloads/Downloads";
 import Dashboard from "../pages/dashboard/dashboard/Dashboard";
+import Contact from "../pages/contact/Contact";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 const Routes = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const Routes = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "about",
+        element: <AboutUs />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
     ],
   },

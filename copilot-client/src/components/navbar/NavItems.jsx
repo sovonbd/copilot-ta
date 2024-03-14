@@ -15,13 +15,13 @@ export const NavItems = [
     Icon: BiHomeAlt2,
   },
   {
-    title: "Login",
-    href: "/login",
+    title: "About Us",
+    href: "/about",
     Icon: FiSearch,
   },
   {
-    title: "Register",
-    href: "/register",
+    title: "Contact Us",
+    href: "/contact",
     Icon: IoPricetagsOutline,
   },
   {
