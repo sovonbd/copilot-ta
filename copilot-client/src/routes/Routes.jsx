@@ -8,6 +8,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Profile from "../pages/dashboard/profile/Profile";
 import Subscription from "../pages/dashboard/subscription/Subscription";
 import Downloads from "../pages/dashboard/downloads/Downloads";
+import Dashboard from "../pages/dashboard/dashboard/Dashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -36,8 +37,16 @@ const Routes = createBrowserRouter([
   // Dashboard routes
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
     children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
       {
         path: "profile",
         element: <Profile />,

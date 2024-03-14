@@ -8,7 +8,7 @@ import ImageThumbnail from "../imageThumbnail/ImageThumbnail";
 
 const Hero = () => {
   const [imageInfo, setImageInfo] = useState(null);
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [refetchImages, setRefetchImages] = useState(null); // State to hold the refetch function
   const [images, setImages] = useState(null);
