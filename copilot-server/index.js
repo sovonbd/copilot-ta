@@ -74,6 +74,14 @@ async function run() {
     app.post("/dowloadedImages", async (req, res) => {
       const downloadInfo = req.body;
       console.log(downloadInfo);
+      const query = {
+        imageName: downloadInfo.imageName,
+        downloadedAt: downloadInfo.downloadedAt,
+      };
+      const existingImage = await downloadCollection.findOne(query);
+      if (existingImage) {
+        return res.send({ message: "Image already exists" });
+      }
       const result = await downloadCollection.insertOne(downloadInfo);
       res.send(result);
     });

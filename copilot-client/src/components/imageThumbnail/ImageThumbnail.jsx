@@ -47,8 +47,50 @@ const ImageThumbnail = ({ refetchImages, fetchedImages }) => {
     setOpen(true);
   };
 
-  const downloading = () => {
-    saveAs(tempimgSrc, imageName);
+  // const downloading = () => {
+  //   saveAs(tempimgSrc, imageName);
+  //   const downloadedImage = {
+  //     imageName: imageName,
+  //     downloadedAt: new Date().toLocaleString("en-US", {
+  //       month: "short",
+  //       day: "2-digit",
+  //       year: "numeric",
+  //       hour: "numeric",
+  //       minute: "2-digit",
+  //       hour12: true,
+  //     }),
+  //     imageUrl: tempimgSrc,
+  //     downloader: user?.displayName,
+  //     downloaderEmail: user?.email,
+  //     downloaderImage: user?.photoURL,
+  //   };
+  //   console.log(downloadedImage);
+  //   mutate(downloadedImage);
+  // };
+
+  const downloadingImage = async (imSrc, imName, forceDownload) => {
+    if (!forceDownload) {
+      const link = document.createElement("a");
+      link.href = imSrc;
+      link.download = imName;
+      document.body.appendChild(link); // Fixed typo here
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    const imageBlob = await fetch(imSrc)
+      .then((response) => response.arrayBuffer())
+      .then((buffer) => new Blob([buffer], { type: "image/jpg" }));
+
+    // console.log(imageBlob);
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(imageBlob);
+    link.download = imName;
+    document.body.appendChild(link); // Fixed typo here
+    link.click();
+    document.body.removeChild(link);
+
     const downloadedImage = {
       imageName: imageName,
       downloadedAt: new Date().toLocaleString("en-US", {
@@ -67,6 +109,7 @@ const ImageThumbnail = ({ refetchImages, fetchedImages }) => {
     console.log(downloadedImage);
     mutate(downloadedImage);
   };
+
   return (
     <div>
       <div className="py-16 flex flex-col items-center md:items-end px-3">
@@ -88,7 +131,8 @@ const ImageThumbnail = ({ refetchImages, fetchedImages }) => {
         />
         <BsDownload
           className="mr-12 hover:scale-150 duration-300"
-          onClick={downloading}
+          // onClick={downloading}
+          onClick={() => downloadingImage(tempimgSrc, imageName)}
         />
       </div>
       <div className="gallery">

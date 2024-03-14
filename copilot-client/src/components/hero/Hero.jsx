@@ -12,23 +12,27 @@ const Hero = () => {
   const axiosPublic = useAxiosPublic();
   const [refetchImages, setRefetchImages] = useState(null); // State to hold the refetch function
   const [images, setImages] = useState(null);
+  console.log(imageInfo);
 
   useEffect(() => {
     // Check if all objects are loaded before logging
     if (imageInfo) {
       const imageFiles = {
-        original_filename: imageInfo?.original_filename,
-        bytes: imageInfo?.bytes,
-        created_at: new Intl.DateTimeFormat("en-US", {
+        original_filename: imageInfo.split("/").pop(),
+        created_at: new Date().toLocaleString("en-US", {
           month: "short",
           day: "2-digit",
           year: "numeric",
-        }).format(Date.parse(imageInfo?.created_at)),
-        url: imageInfo?.url,
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        }),
+        url: imageInfo,
         user: user?.displayName,
         email: user?.email,
         userImage: user?.photoURL,
       };
+      console.log(imageFiles);
 
       // Now that all objects are loaded, you can make the API call
       axiosPublic
