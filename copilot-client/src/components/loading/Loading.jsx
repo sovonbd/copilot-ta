@@ -1,13 +1,13 @@
-import image from "../../../public/loading.gif";
-const Loading = () => {
-  const style = {
-    background: `radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 30%)`,
-  };
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/animate-loading.json";
 
+const Loading = () => {
   return (
-    <div className="relative flex justify-center items-center h-screen w-full">
-      <div style={style} className=" h-full w-full absolute top-0"></div>
-      <img src={image} alt="" />
+    <div className="flex justify-center items-center">
+      <Lottie
+        animationData={loadingAnimation}
+        loop={true}
+        className="w-1/2 md:w-1/4 mx-auto"></Lottie>
     </div>
   );
 };

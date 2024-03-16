@@ -6,7 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 export const NavItems = [
   {
     title: "Dashboard",
-    href: "/",
+    href: "/dashboard",
     Icon: BiHomeAlt2,
   },
   {

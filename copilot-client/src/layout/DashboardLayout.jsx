@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../pages/dashboard/dashboard/Sidebar";
 import ChatBubble from "../components/chatBubble/chatBubble";
+import Dashboard from "../pages/dashboard/dashboard/Dashboard";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,6 +22,7 @@ const DashboardLayout = () => {
             : "left-0 md:relative"
         }`}>
         <Outlet />
+        <Dashboard />
         <ChatBubble className="relative z-10" />
       </div>
     </div>

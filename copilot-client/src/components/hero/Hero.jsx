@@ -5,14 +5,22 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import CloudinaryUploadWidget from "../../pages/register/CloudinaryUploadWidget";
 import { toast } from "react-toastify";
 import ImageThumbnail from "../imageThumbnail/ImageThumbnail";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 const Hero = () => {
   const [imageInfo, setImageInfo] = useState(null);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [refetchImages, setRefetchImages] = useState(null); // State to hold the refetch function
-  const [images, setImages] = useState(null);
-  console.log(imageInfo);
+
+  // console.log(imageInfo);
+
+  const { data: images, refetch } = useQuery({
+    queryKey: ["images"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/images");
+      return res.data;
+    },
+  });
 
   useEffect(() => {
     // Check if all objects are loaded before logging
@@ -41,9 +49,7 @@ const Hero = () => {
           if (res?.data.insertedId) {
             setTimeout(() => {
               toast.success("Image Uploaded!!!");
-              if (refetchImages) {
-                refetchImages();
-              }
+              refetch();
             }, 2000);
           }
         })
@@ -55,7 +61,7 @@ const Hero = () => {
     user?.displayName,
     user?.email,
     user?.photoURL,
-    refetchImages,
+    refetch,
   ]);
 
   return (
@@ -77,10 +83,7 @@ const Hero = () => {
 
         {images !== null && <ShuffleGrid images={images} />}
       </section>
-      <ImageThumbnail
-        refetchImages={setRefetchImages}
-        fetchedImages={setImages}
-      />
+      <ImageThumbnail />
     </div>
   );
 };
