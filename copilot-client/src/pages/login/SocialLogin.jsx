@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 
 const SocialLogin = () => {
-  const { googleSignIn } = useAuth();
+  const { googleSignIn, githubSignIn, facebookSignIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosPublic = useAxiosPublic();
@@ -21,7 +21,36 @@ const SocialLogin = () => {
           email: res.user?.email,
           name: res.user?.displayName,
           image: res.user?.photoURL,
-          phoneNumber: res.user?.phoneNumber || "N/A",
+        };
+        // console.log(userInfo);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          // console.log(res.data);
+        });
+        toast.success("Successfully Logged in!");
+
+        navigate(from, { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleFacebookSignIn = () => {
+    facebookSignIn()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((res) => {
+        // console.log(res.user);
+        const userInfo = {
+          email: res.user?.email,
+          name: res.user?.displayName,
+          image: res.user?.photoURL,
         };
         // console.log(userInfo);
         axiosPublic.post("/users", userInfo).then((res) => {
@@ -74,12 +103,12 @@ const SocialLogin = () => {
             src={facebookpng}
             className="w-6 hover:scale-[2] transition duration-500"></img>
         ) : (
-          <FaFacebook />
+          <FaFacebook onClick={handleFacebookSignIn} />
         )}
       </button>
-      
+
       <FaGithub
-        onClick={handleGoogleSignIn}
+        onClick={handleGithubSignIn}
         className=" hover:scale-150 text-center cursor-pointer transition duration-300"
       />
     </div>

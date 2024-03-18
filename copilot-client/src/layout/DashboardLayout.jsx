@@ -22,7 +22,8 @@ const DashboardLayout = () => {
             : "left-0 md:relative"
         }`}>
         <Outlet />
-        <Dashboard />
+        {location.pathname === "/dashboard" && <Dashboard />}
+
         <ChatBubble className="relative z-10" />
       </div>
     </div>
