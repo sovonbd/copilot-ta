@@ -33,14 +33,24 @@ const SocialLogin = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleFacebookSignIn = () => {
-    facebookSignIn()
+  const handleFacebookSignIn = async () => {
+    await facebookSignIn()
       .then((res) => {
-        console.log(res.user);
+        // console.log(res.user);
+        const userInfo = {
+          email: res.user?.email,
+          name: res.user?.displayName,
+          image: res.user?.photoURL,
+        };
+        // console.log(userInfo);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          // console.log(res.data);
+        });
+        toast.success("Successfully Logged in!");
+
+        navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((err) => console.log(err));
   };
 
   const handleGithubSignIn = () => {
@@ -97,13 +107,14 @@ const SocialLogin = () => {
       </button>
       <button
         onMouseEnter={handleFacebookMouseEnter}
-        onMouseLeave={handleFacebookMouseLeave}>
+        onMouseLeave={handleFacebookMouseLeave}
+        onClick={handleFacebookSignIn}>
         {facebookHovered ? (
           <img
             src={facebookpng}
             className="w-6 hover:scale-[2] transition duration-500"></img>
         ) : (
-          <FaFacebook onClick={handleFacebookSignIn} />
+          <FaFacebook />
         )}
       </button>
 
