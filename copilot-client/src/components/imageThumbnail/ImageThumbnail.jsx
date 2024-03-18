@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import "./gallery.css";
 import { RxCross2 } from "react-icons/rx";
 import { BsDownload } from "react-icons/bs";
 import useAuth from "../../hooks/useAuth";
 import { saveAs } from "file-saver";
 import Loading from "../loading/Loading";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import Modal from "./Modal";
-import Select from "./SpeedDial";
+
 import SpeedDial from "./SpeedDial";
 
 const ImageThumbnail = ({ refetchImages }) => {
@@ -18,54 +16,41 @@ const ImageThumbnail = ({ refetchImages }) => {
   const axiosPublic = useAxiosPublic();
   const [imageName, setImageName] = useState("");
   const { user } = useAuth();
-  const [openModal, setOpenModal] = useState(false);
-  const [modalImageSrc, setModalImageSrc] = useState("");
-  const [modalImageName, setModalImageName] = useState("");
+  const openModal = false;
+
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [imgId, setImgId] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axiosPublic.get("/images");
-        setImages(res.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchData();
-
-    // If you need to refetch images, you can pass refetchImages as a dependency
-    // refetchImages(() => fetchData());
+  const fetchData = useCallback(async () => {
+    try {
+      const res = await axiosPublic.get("/images");
+      setImages(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
   }, [axiosPublic]);
 
-  console.log(imgId);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-  // const {
-  //   data: images,
-  //   isLoading,
-  //   refetch,
-  // } = useQuery({
-  //   queryKey: ["images"],
-  //   queryFn: async () => {
-  //     const res = await axiosPublic.get("/images");
-  //     return res.data;
-  //   },
-  // });
-  // console.log(images);
+  const fetchImages = async () => {
+    await fetchData();
+  };
+
+  // fetchImages();
+
+  // console.log(imgId);
 
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosPublic.post("/dowloadedImages", item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
-
-  // refetchImages(() => refetch);
 
   if (isLoading) {
     return <Loading />;
@@ -93,57 +78,9 @@ const ImageThumbnail = ({ refetchImages }) => {
       downloaderEmail: user?.email,
       downloaderImage: user?.photoURL,
     };
-    console.log(downloadedImage);
+    // console.log(downloadedImage);
     mutate(downloadedImage);
   };
-
-  // const downloadingImage = async (imSrc, imName, forceDownload) => {
-  //   if (!forceDownload) {
-  //     const link = document.createElement("a");
-  //     link.href = imSrc;
-  //     link.download = imName;
-  //     document.body.appendChild(link); // Fixed typo here
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   }
-
-  //   const imageBlob = await fetch(imSrc)
-  //     .then((response) => response.arrayBuffer())
-  //     .then((buffer) => new Blob([buffer], { type: "image/jpg" }));
-
-  //   // console.log(imageBlob);
-
-  //   const link = document.createElement("a");
-  //   link.href = URL.createObjectURL(imageBlob);
-  //   link.download = imName;
-  //   document.body.appendChild(link); // Fixed typo here
-  //   link.click();
-  //   document.body.removeChild(link);
-
-  //   const downloadedImage = {
-  //     imageName: imageName,
-  //     downloadedAt: new Date().toLocaleString("en-US", {
-  //       month: "short",
-  //       day: "2-digit",
-  //       year: "numeric",
-  //       hour: "numeric",
-  //       minute: "2-digit",
-  //       hour12: true,
-  //     }),
-  //     imageUrl: tempimgSrc,
-  //     downloader: user?.displayName,
-  //     downloaderEmail: user?.email,
-  //     downloaderImage: user?.photoURL,
-  //   };
-  //   console.log(downloadedImage);
-  //   mutate(downloadedImage);
-  // };
-
-  // const handleModalOpen = (imgSrc, imgName) => {
-  //   setModalImageSrc(imgSrc);
-  //   setModalImageName(imgName);
-  //   setOpenModal(true);
-  // };
 
   return (
     <div>
@@ -184,9 +121,21 @@ const ImageThumbnail = ({ refetchImages }) => {
                   }
                 }}
               />
-
+              {imgId === item._id && (
+                <div className="absolute bottom-2 left-2 z-20 flex gap-1 items-center text-left">
+                  <img
+                    src={item.userImage}
+                    className="w-12 rounded-full"
+                    alt=""
+                  />
+                  <div className="text-xs font-thin">
+                    <p>Uploaded By</p>
+                    <p>{item.user}</p>
+                  </div>
+                </div>
+              )}
               <div className="absolute text-xl bottom-2 right-4 z-20">
-                <SpeedDial itemId={item._id} />
+                <SpeedDial itemId={item._id} refetchImages={fetchImages} />
               </div>
             </div>
           </div>

@@ -35,11 +35,11 @@ const Register = () => {
       const email = data?.email;
       const password = data?.password;
       const imageUrl = imageInfo?.url;
-      console.log(name, email, password, imageUrl);
+      // console.log(name, email, password, imageUrl);
 
       createUser(email, password)
         .then((res) => {
-          console.log(res.user);
+          // console.log(res.user);
           updateUserProfile(name, imageUrl).then(() => {
             const userInfo = {
               name: name,

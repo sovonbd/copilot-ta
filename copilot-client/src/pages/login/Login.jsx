@@ -31,7 +31,7 @@ const Login = () => {
 
     signIn(email, password)
       .then((res) => {
-        console.log(res.user);
+        // console.log(res.user);
         toast.success(`Welcome back ${res.user.displayName}!`);
         navigate("/");
         reset();

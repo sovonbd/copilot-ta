@@ -40,7 +40,7 @@ const Hero = () => {
         email: user?.email,
         userImage: user?.photoURL,
       };
-      console.log(imageFiles);
+      // console.log(imageFiles);
 
       // Now that all objects are loaded, you can make the API call
       axiosPublic

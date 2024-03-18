@@ -27,7 +27,7 @@ const ChatBubble = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here, e.g., sending the form data to a backend server
-    console.log(formData);
+    // console.log(formData);
     // Reset form fields after submission
     setFormData({
       name: "",

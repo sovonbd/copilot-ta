@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className="flex justify-center flex-col items-center h-screen">
       <p className="font-neuzeit text-xl text-center p-4 lg:p-0">
-        Page Under maintenance. Please see the other pages
+        Page is under maintenance. Please see the other pages
       </p>
       <Lottie
         animationData={loadingAnimation}

@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const Downloads = () => {
   const { user } = useAuth();
 
-  console.log(user.email);
+  // console.log(user.email);
   const axiosPublic = useAxiosPublic();
   const { data: downloadItems = [], isLoading } = useQuery({
     queryKey: ["users"],
@@ -20,7 +20,7 @@ const Downloads = () => {
     return <Loading></Loading>;
   }
 
-  console.log(downloadItems);
+  // console.log(downloadItems);
 
   return (
     <div className="overflow-x-auto h-screen">
