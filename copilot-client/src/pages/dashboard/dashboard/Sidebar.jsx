@@ -122,9 +122,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     const { Icon } = item;
                     return (
                       <li key={item?.title}>
-                        <a
+                        <Link
                           onClick={toggleSidebar}
-                          href={item?.href}
+                          to={item?.href}
                           className="flex items-center justify-between gap-5 p-5 transition-all border-b-2 hover:text-red-500 border-zinc-800 hover:text-lg duration-300 hover:ease-in-out md:h-16">
                           <motion.span {...framerText(idx)}>
                             {item?.title}
@@ -132,7 +132,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <motion.div {...framerIcon}>
                             <Icon className="text-2xl" />
                           </motion.div>
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
