@@ -9,11 +9,16 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(express.json());
-const _dirName = path.dirname("");
-const buildPath = path.join(_dirName, "../copilot-client/dist");
-app.use(express.static(buildPath));
+// const _dirName = path.dirname("");
+// const buildPath = path.join(_dirName, "../copilot-client/dist");
+// app.use(express.static(buildPath));
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2dhdxvg.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -41,6 +46,7 @@ async function run() {
 
     app.post("/users", async (req, res) => {
       const user = req.body;
+      console.log(user);
       const query = { email: user.email };
       const existingUser = await userCollection.findOne(query);
       if (existingUser) {
@@ -80,6 +86,19 @@ async function run() {
         return res.send({ message: "Image already exists" });
       }
       const result = await imageCollection.insertOne(images);
+      res.send(result);
+    });
+
+    app.patch("/images/:id", async (req, res) => {
+      const id = req.params.id;
+      const body = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          url: body.attachmentURL,
+        },
+      };
+      const result = await imageCollection.updateOne(filter, updateDoc);
       res.send(result);
     });
 
