@@ -50,7 +50,7 @@ Welcome to my  Photo Upload and Management Web App! This is a responsive web app
 
 ## Deployment
 
-The application is hosted on AWS. Photo storage is managed using Cloudinary.
+The application is hosted on AWS, but the current demo link is a netlify link. Photo storage is managed using Cloudinary.
 
 ## Getting Started
 
