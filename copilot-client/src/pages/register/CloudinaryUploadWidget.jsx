@@ -37,7 +37,16 @@ const CloudinaryUploadWidget = ({ handleImageInfo }) => {
       {
         cloudName: "dwdxdtvez",
         uploadPreset: "test_preset",
-        sources: ["local", "url", "google_drive"],
+        sources: [
+          "local",
+          "url",
+          "google_drive",
+          "unsplash",
+          "camera",
+          "dropbox",
+          "istock",
+          "shutterstock",
+        ],
         multiple: location.pathname === "/register" ? false : true,
         folder: location.pathname === "/register" ? "users" : "images",
       },
@@ -50,8 +59,7 @@ const CloudinaryUploadWidget = ({ handleImageInfo }) => {
       {location.pathname !== "/" ? (
         <button
           id="upload_widget"
-          className="inline-flex items-center gap-1 rounded-md border border-input rounded-r-none bg-white text-red-600 text-sm p-1 file:border-0 file:bg-blue-600 file:text-white file:text-sm"
-        >
+          className="inline-flex items-center gap-1 rounded-md border border-input rounded-r-none bg-white text-red-600 text-sm p-1 file:border-0 file:bg-blue-600 file:text-white file:text-sm">
           <MdOutlineFileUpload className="text-xl" />{" "}
           <span className="hover:font-bold duration-500">
             Upload Your Image
