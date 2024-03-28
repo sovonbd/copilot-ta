@@ -12,7 +12,6 @@ import { FaXTwitter } from "react-icons/fa6";
 
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import logo from "../../assets/CoPilotXR_01.png";
 
 const Footer = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -33,7 +32,11 @@ const Footer = () => {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
               <div className="flex justify-center text-white sm:justify-start">
-                <img src={logo} className="w-16" alt="" />
+                <Link
+                  to="/"
+                  className="relative text-2xl font-bold pb-4 hover:scale-110 transition duration-300">
+                  Virtual <span className="text-red-600">Reality</span>
+                </Link>{" "}
               </div>
 
               <p className="mt-6 max-w-md text-center leading-relaxed text-white sm:max-w-xs sm:text-left">
@@ -208,7 +211,7 @@ const Footer = () => {
                       href="/">
                       <FaRegEnvelope className="text-lg"></FaRegEnvelope>
 
-                      <span className=" text-white">copilot@copilot.com</span>
+                      <span className=" text-white">virtual@reality.com</span>
                     </a>
                   </li>
 
@@ -255,7 +258,7 @@ const Footer = () => {
               </p>
 
               <p className="mt-4 text-sm text-white sm:order-first sm:mt-0">
-                &copy;{` ${new Date().getFullYear()} CoPilot Co.`}
+                &copy;{` ${new Date().getFullYear()} Virtual Reality Co.`}
               </p>
             </div>
           </div>

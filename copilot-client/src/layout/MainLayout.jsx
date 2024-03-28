@@ -4,11 +4,13 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import ChatBubble from "../components/chatBubble/chatBubble";
+import ReturnPortfolio from "../components/returnPortfolio/ReturnPortfolio";
 const MainLayout = () => {
   const location = useLocation();
   return (
-    <div className="bg-neutral-950 text-white overflow-auto lg:overflow-visible">
+    <div className="bg-neutral-950 text-white overflow-auto lg:overflow-visible relative">
       {/* <Navbar /> */}
+      <ReturnPortfolio />
       {location.pathname === "/" ||
       location.pathname === "/about" ||
       location.pathname === "/contact" ? (

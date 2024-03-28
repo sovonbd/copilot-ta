@@ -1,6 +1,5 @@
 // Import necessary dependencies
 import videoSource from "../../assets/video.mp4";
-import Logo from "../../assets/CoPilotXR_02.png";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
 import { useState } from "react";
@@ -79,12 +78,10 @@ const Register = () => {
       <div className="lg:absolute h-full lg:h-screen inset-0 flex items-center justify-center p-6">
         <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-6 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
           {/* Logo */}
-          <Link to="/">
-            <img
-              src={Logo}
-              className="relative hover:scale-110 transition duration-300 z-10 w-24 pb-4 mx-auto"
-              alt=""
-            />
+          <Link
+            to="/"
+            className="relative text-2xl font-bold pb-4 mx-auto hover:scale-110 transition duration-300">
+            Virtual <span className="text-red-600">Reality</span>
           </Link>
 
           {/* Login Title */}

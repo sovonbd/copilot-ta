@@ -1,6 +1,5 @@
 // Import necessary dependencies
 import videoSource from "../../assets/video.mp4";
-import Logo from "../../assets/CoPilotXR_02.png";
 import { Link, useNavigate } from "react-router-dom";
 import { TbUser } from "react-icons/tb";
 import { MdLockOutline } from "react-icons/md";
@@ -61,18 +60,17 @@ const Login = () => {
       <div className="lg:absolute h-full lg:h-screen inset-0 flex items-center justify-center p-6">
         <div className="relative z-10 flex flex-col items-center w-max lg:w-[460px] mx-auto py-10 border-[2px] backdrop-blur-md backdrop-saturate-200 rounded-3xl ">
           {/* Logo */}
-          <Link to="/">
-            <img
-              src={Logo}
-              className="relative z-10 w-24 pb-4 mx-auto hover:scale-110 transition duration-300"
-              alt=""
-            />
+          <Link
+            to="/"
+            className="relative text-2xl font-bold pb-4 mx-auto hover:scale-110 transition duration-300">
+            Virtual <span className="text-red-600">Reality</span>
           </Link>
 
           {/* Login Title */}
-          <h1 className="text-2xl lg:text-3xl pt-8 pb-2">Welcome Back!</h1>
-          <p className="text-sm font-extralight text-gray-300 pb-6 w-4/5 lg:w-3/5 text-center">
-            To keep connected with us please log in to your account
+          <h1 className="text-2xl lg:text-3xl pt-8 pb-4">Welcome Back!</h1>
+          <p className="text font-extralight text-white pb-6 w-4/5 lg:w-3/5 text-center">
+            <p>Email: mama@mami.com</p>
+            <p className="">Password: 111111</p>
           </p>
 
           {/* Form element */}

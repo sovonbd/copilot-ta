@@ -7,7 +7,6 @@ import { BiHomeSmile, BiUser } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/CoPilotXR_02.png";
 import useAuth from "../../../hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -102,12 +101,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               ref={ref}
               aria-label="Sidebar">
               <div className="flex items-center justify-between p-5 border-b-2 border-zinc-800 pb-10">
-                <Link to="/">
-                  <img
-                    src={logo}
-                    className="w-28 hover:scale-110 duration-300"
-                    alt=""
-                  />
+                <Link
+                  to="/"
+                  className="relative top-3 text-xl font-bold pb-4 hover:scale-110 transition duration-300">
+                  Virtual <span className="text-red-600">Reality</span>
                 </Link>
                 <button
                   onClick={toggleSidebar}
