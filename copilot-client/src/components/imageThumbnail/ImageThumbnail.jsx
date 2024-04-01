@@ -108,12 +108,12 @@ const ImageThumbnail = ({ refetchImages }) => {
       </div>
       <div className="gallery">
         {images.map((item) => (
-          <div className="pics" key={item._id}>
+          <div className="" key={item._id}>
             <div className="relative" onMouseOver={() => setImgId(item._id)}>
               <img
                 src={item.url}
                 alt=""
-                className="relative"
+                className="relative pics"
                 onClick={() => {
                   if (!openModal) {
                     setImageName(item.original_filename);
@@ -134,7 +134,7 @@ const ImageThumbnail = ({ refetchImages }) => {
                   </div>
                 </div>
               )}
-              <div className="absolute text-xl bottom-2 right-4 z-20">
+              <div className="absolute text-xl bottom-2 right-4 z-20 cursor-pointer">
                 <SpeedDial itemId={item._id} refetchImages={fetchImages} />
               </div>
             </div>

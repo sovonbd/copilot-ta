@@ -13,6 +13,7 @@
   transition: all 350ms ease;
   cursor: pointer;
   margin-bottom: 12px;
+  position: relative; /* Added position relative to .pics */
 }
 
 .gallery .pics:hover {
@@ -26,16 +27,6 @@
     column-count: 2;
   }
 }
-/* @media (max-width: 480px) {
-  .gallery {
-    --webkit-column-count: 2;
-    --moz-column-count: 2;
-    column-count: 2;
-    --webkit-column-width: 100%;
-    --moz-column-width: 100%;
-    column-width: 100%;
-  }
-} */
 
 /* model */
 .model {
