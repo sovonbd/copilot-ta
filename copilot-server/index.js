@@ -16,9 +16,9 @@ app.use(
   })
 );
 app.use(express.json());
-// const _dirName = path.dirname("");
-// const buildPath = path.join(_dirName, "../copilot-client/dist");
-// app.use(express.static(buildPath));
+const _dirName = path.dirname("");
+const buildPath = path.join(_dirName, "../copilot-client/dist");
+app.use(express.static(buildPath));
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2dhdxvg.mongodb.net/?retryWrites=true&w=majority`;
 
