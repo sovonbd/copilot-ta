@@ -1,6 +1,6 @@
 # Virtual Reality
 
-Check out the live demo of Virtual Reality: [Live Demo](https://cheerful-selkie-39e8de.netlify.app/)
+Check out the live demo of Virtual Reality: [Live Demo](http://ec2-3-145-65-7.us-east-2.compute.amazonaws.com:5000/)
 
 Welcome to my  Photo Upload and Management Web App! This is a responsive web application where users can upload, view, replace, and download photos. Additionally, users can manage their profiles, view subscription types, and check their photo download history.
 
