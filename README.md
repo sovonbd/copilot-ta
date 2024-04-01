@@ -55,7 +55,7 @@ The application is hosted on AWS, but the current demo link is a netlify link. P
 ## Getting Started
 
 1. Clone the repository.
-2. Install dependencies for both client and server using `npm install`
+2. Install dependencies for both client and server using `npm install`.
 3. Set up environment variables of firebase for client as specified in `.env.local`.
 4. Set up environment variables for mongodb username and password as specified in `.env`.
 5. Run the server using `npm run dev` and check it out.
